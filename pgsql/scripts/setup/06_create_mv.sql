@@ -3,8 +3,7 @@
 --  mv_user_time
 -- ####################################
 
-DROP MATERIALIZED VIEW IF EXISTS dw_schema.mv_user_time;
-
+-- DROP MATERIALIZED VIEW IF EXISTS dw_schema.mv_user_time;
 CREATE MATERIALIZED VIEW dw_schema.mv_user_time
 TABLESPACE mv_tbsp
 AS
@@ -31,12 +30,10 @@ GROUP BY
 CREATE INDEX idx_mv_time 
 ON dw_schema.mv_user_time (dim_year, dim_month, dim_hour);
 
-
 -- ####################################
 --  mv_user_station
 -- ####################################
-DROP MATERIALIZED VIEW IF EXISTS dw_schema.mv_user_station;
-
+-- DROP MATERIALIZED VIEW IF EXISTS dw_schema.mv_user_station;
 CREATE MATERIALIZED VIEW dw_schema.mv_user_station
 TABLESPACE mv_tbsp
 AS
@@ -111,12 +108,10 @@ ON dw_schema.mv_user_station (dim_year);
 CREATE INDEX idx_mv_user_station_station 
 ON dw_schema.mv_user_station (dim_station);
 
-
 -- ####################################
 --  mv_station_count
 -- ####################################
-DROP MATERIALIZED VIEW IF EXISTS dw_schema.mv_station_count;
-
+-- DROP MATERIALIZED VIEW IF EXISTS dw_schema.mv_station_count;
 CREATE MATERIALIZED VIEW dw_schema.mv_station_count
 TABLESPACE mv_tbsp
 AS
@@ -131,8 +126,7 @@ GROUP BY t.dim_time_year;
 -- ####################################
 --  mv_bike_count
 -- ####################################
-DROP MATERIALIZED VIEW IF EXISTS dw_schema.mv_bike_count;
-
+-- DROP MATERIALIZED VIEW IF EXISTS dw_schema.mv_bike_count;
 CREATE MATERIALIZED VIEW dw_schema.mv_bike_count
 TABLESPACE mv_tbsp
 AS

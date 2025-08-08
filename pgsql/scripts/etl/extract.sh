@@ -5,12 +5,10 @@
 DB_USER="postgres"
 DB_NAME="toronto_shared_bike"
 DATA_PATH="/data"
-YEAR_START=2019
-YEAR_END=2022
 
 # Truncate table
 psql -U "$DB_USER" -d "$DB_NAME" \
-        -c "TRUNCATE TABLE dw_schema.staging_trip"
+    -c "TRUNCATE TABLE dw_schema.staging_trip"
 
 # Check if truncate was successful
 if [[ $? -ne 0 ]]; then
@@ -19,7 +17,8 @@ if [[ $? -ne 0 ]]; then
 fi
 
 # loop all years
-for per_year in {$YEAR_START..$YEAR_END}; do
+for per_year in {2019..2022}; do
+    
     # generate path
     per_year_path="$DATA_PATH/$per_year"
 
@@ -40,7 +39,7 @@ for per_year in {$YEAR_START..$YEAR_END}; do
         echo -e "Processing: $csv_file"
         
         psql -U "$DB_USER" -d "$DB_NAME" \
-        -c "\\COPY dw_schema.staging_trip (
+            -c "\\COPY dw_schema.staging_trip (
                 trip_id,
                 trip_duration,
                 start_station_id,
@@ -55,9 +54,9 @@ for per_year in {$YEAR_START..$YEAR_END}; do
         
         # Check if the psql command was successful
         if [[ $? -eq 0 ]]; then
-            echo "Successfully loaded: $csv_file"
+            echo -e "Successfully loaded: $csv_file \n"
         else
-            echo "Failed to load: $csv_file"
+            echo -e "Failed to load: $csv_file \n"
         fi
     done
 done

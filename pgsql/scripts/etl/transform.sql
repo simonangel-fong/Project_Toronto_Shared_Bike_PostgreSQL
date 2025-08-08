@@ -106,6 +106,6 @@ WHERE POSITION(CHR(13) IN user_type) > 0;
 -- ============================================================================
 -- Final Confirmation
 -- ============================================================================
-SELECT *
-FROM dw_schema.staging_trip
-LIMIT 2;
+-- SELECT *
+-- FROM dw_schema.staging_trip
+-- LIMIT 2;

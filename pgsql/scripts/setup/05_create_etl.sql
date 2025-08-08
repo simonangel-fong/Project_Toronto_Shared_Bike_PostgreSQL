@@ -1,6 +1,6 @@
 
 -- Create staging table
-DROP TABLE IF EXISTS dw_schema.staging_trip;
+-- DROP TABLE IF EXISTS dw_schema.staging_trip;
 CREATE TABLE dw_schema.staging_trip (
     trip_id               VARCHAR(100),
     trip_duration         VARCHAR(15),

@@ -1,12 +1,3 @@
--- ============================================================================
--- Script Name : create_tablespaces.sql
--- Purpose     : Create tablespaces for fact, dimension, index, staging, and materialized view storage
---               in the Toronto Shared Bike Data Warehouse (PostgreSQL version)
--- Author      : Wenhao Fang (Converted from Oracle)
--- Date        : 2025-07-09
--- User        : Execute as a PostgreSQL superuser or user with CREATE TABLESPACE privileges
--- Notes       : Ensure the database is created and directories exist before running this script
--- ============================================================================
 
 \echo '\n######## Creating tablespaces... ########\n'
 
