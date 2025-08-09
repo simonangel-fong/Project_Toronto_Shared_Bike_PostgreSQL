@@ -26,7 +26,7 @@ A data warehouse project of Toronto Shared Bike using PostgreSQL database.
 
 ### Physical Implementation
 
-- Initialize MSSQL Instance
+- Initialize PostgreSQL Instance
 
 ```sh
 cd pgsql
