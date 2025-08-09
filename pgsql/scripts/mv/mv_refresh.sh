@@ -2,15 +2,18 @@
 
 DB_USER="postgres"
 DB_NAME="toronto_shared_bike"
+SCHEMA_NAME="dw_schema"
+MV_LIST=("mv_user_time" "mv_user_station" "mv_station_count" "mv_bike_count")
 
-psql -U "$DB_USER" -d "$DB_NAME" \
-    -c "REFRESH MATERIALIZED VIEW dw_schema.mv_user_time";
+echo
+echo "##############################"
+echo "Refresh Materialized View ..."
+echo "##############################"
+echo
 
-psql -U "$DB_USER" -d "$DB_NAME" \
-    -c "REFRESH MATERIALIZED VIEW dw_schema.mv_user_station";
-
-psql -U "$DB_USER" -d "$DB_NAME" \
-    -c "REFRESH MATERIALIZED VIEW dw_schema.mv_station_count";
-
-psql -U "$DB_USER" -d "$DB_NAME" \
-    -c "REFRESH MATERIALIZED VIEW dw_schema.mv_bike_count";
+for VIEW in "${MV_LIST[@]}"; do
+    
+    echo -e "\n########## Refreshing $SCHEMA_NAME.$VIEW ##########"
+    psql -U "$DB_USER" -d "$DB_NAME" \
+        -c "REFRESH MATERIALIZED VIEW $SCHEMA_NAME.$VIEW";
+done

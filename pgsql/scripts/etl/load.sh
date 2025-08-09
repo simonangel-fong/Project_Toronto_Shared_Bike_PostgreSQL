@@ -2,6 +2,16 @@
 
 DB_USER="postgres"
 DB_NAME="toronto_shared_bike"
-SQL_FILE="/var/lib/postgresql/scripts/etl/load.sql"
+SQL_FILE="/scripts/etl/load.sql"
+LOG_FILE="/var/log/postgresql/etl_load.log"
 
-psql -U "$DB_USER" -d "$DB_NAME" -f $SQL_FILE
+echo
+echo "##############################"
+echo "ETL Loading Task ..."
+echo "##############################"
+echo
+
+psql -U "$DB_USER" \
+    -d "$DB_NAME" \
+    -L $LOG_FILE \
+    -f $SQL_FILE

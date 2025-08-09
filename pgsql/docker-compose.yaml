@@ -20,7 +20,7 @@ services:
       PGDATA: ${PGDATA}
     volumes:
       - ./scripts/setup:/docker-entrypoint-initdb.d # scripts to run after setup
-      - ./scripts:/var/lib/postgresql/scripts
+      - ./scripts:/scripts
       - ../data:/data
       - ../export:/export
       - pgdata:/var/lib/postgresql # persist data

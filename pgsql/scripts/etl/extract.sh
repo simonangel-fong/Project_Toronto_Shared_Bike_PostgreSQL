@@ -6,7 +6,12 @@ DB_USER="postgres"
 DB_NAME="toronto_shared_bike"
 DATA_PATH="/data"
 
-# Truncate table
+echo
+echo "##############################"
+echo "Truncate table ..."
+echo "##############################"
+echo
+
 psql -U "$DB_USER" -d "$DB_NAME" \
     -c "TRUNCATE TABLE dw_schema.staging_trip"
 
@@ -15,6 +20,12 @@ if [[ $? -ne 0 ]]; then
     echo "Failed to truncate table. Exiting."
     exit 1
 fi
+
+echo
+echo "##############################"
+echo "ETL - Extract Task ..."
+echo "##############################"
+echo
 
 # loop all years
 for per_year in {2019..2022}; do
@@ -62,4 +73,4 @@ for per_year in {2019..2022}; do
 done
 
 echo
-echo -e "########## Extract Job finished. ##########"
+echo "########## Extract Job finished. ##########"

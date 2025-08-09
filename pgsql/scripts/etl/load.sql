@@ -9,6 +9,7 @@
 -- ============================================================================
 -- Load dim_time
 -- ============================================================================
+\echo '\n######## Loading dim_time... ########\n'
 MERGE INTO dw_schema.dim_time AS tgt
 USING (
     SELECT DISTINCT
@@ -47,6 +48,7 @@ VALUES (
 -- ============================================================================
 -- Load dim_station
 -- ============================================================================
+\echo '\n######## Loading dim_station... ########\n'
 WITH station_times AS (
     SELECT 
         start_station_id::INT AS station_id,
@@ -83,6 +85,7 @@ WHEN NOT MATCHED THEN
 -- ============================================================================
 -- Load dim_bike
 -- ============================================================================
+\echo '\n######## Loading dim_bike... ########\n'
 MERGE INTO dw_schema.dim_bike AS tgt
 USING (
     SELECT 
@@ -104,6 +107,7 @@ WHEN NOT MATCHED THEN
 -- ============================================================================
 -- Load dim_user_type
 -- ============================================================================
+\echo '\n######## Loading dim_user_type... ########\n'
 MERGE INTO dw_schema.dim_user_type AS tgt
 USING (
     SELECT DISTINCT user_type AS dim_user_type_name
@@ -118,6 +122,7 @@ WHEN NOT MATCHED THEN
 -- ============================================================================
 -- Load fact_trip
 -- ============================================================================
+\echo '\n######## Loading fact_trip... ########\n'
 MERGE INTO dw_schema.fact_trip AS tgt
 USING (
     SELECT 
@@ -172,3 +177,20 @@ WHEN NOT MATCHED THEN
     src.fact_trip_bike_id,
     src.fact_trip_user_type_id
   );
+
+-- Confirm
+\echo '\n######## Confirm loading task... ########\n'
+SELECT COUNT(*) AS dim_time_count
+FROM dw_schema.dim_time;
+
+SELECT COUNT(*) AS dim_station_count
+FROM dw_schema.dim_station;
+
+SELECT COUNT(*) AS dim_bike_count
+FROM dw_schema.dim_bike;
+
+SELECT COUNT(*) AS dim_user_type_count
+FROM dw_schema.dim_user_type;
+
+SELECT COUNT(*) AS fact_trip_count
+FROM dw_schema.fact_trip;
