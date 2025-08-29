@@ -1,6 +1,14 @@
 #!/usr/bin/bash
 
-# set -e
+# ============================================================================
+# Script Name : extract.sh
+# Purpose     : Extract data from csv files.
+# Author      : Wenhao Fang
+# Date        : 2025-07-15
+# User        : Execute as a PostgreSQL superuser
+# ============================================================================
+
+set -e
 
 DB_USER="postgres"
 DB_NAME="toronto_shared_bike"

@@ -1,3 +1,10 @@
+-- ============================================================================
+-- Script Name : 02_create_tbsp.sql
+-- Purpose     : Create tablespaces
+-- Author      : Wenhao Fang
+-- Date        : 2025-07-15
+-- User        : Execute as a PostgreSQL superuser
+-- ============================================================================
 
 \echo '\n######## Creating tablespaces... ########\n'
 

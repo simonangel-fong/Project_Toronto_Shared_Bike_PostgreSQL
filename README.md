@@ -10,6 +10,7 @@ A data warehouse project of Toronto Shared Bike using PostgreSQL database.
   - [ETL Pipeline](#etl-pipeline)
     - [Confirm](#confirm)
     - [Export Processed Data](#export-processed-data)
+  - [Execute Pipeline](#execute-pipeline)
 
 ---
 
@@ -89,26 +90,44 @@ docker exec -it postgresql bash /scripts/mv/mv_refresh.sh
 
 ### Confirm
 
-- Time dimension
+- Time dimension - hour
 
 ```sh
 SELECT
 	dim_year
-	, dim_month
 	, dim_hour
 	, dim_user
 	, trip_count
 	, duration_sum
-FROM toronto_shared_bike.dw_schema.mv_user_time
+FROM toronto_shared_bike.dw_schema.mv_user_year_hour_trip
 ORDER BY
     dim_year
-    , dim_month
     , dim_hour
     , dim_user
 ;
 ```
 
 ![pic](./pic/query01.png)
+
+- Time dimension - month
+
+
+```sh
+SELECT
+	dim_year
+	, dim_month
+	, dim_user
+	, trip_count
+	, duration_sum
+FROM toronto_shared_bike.dw_schema.mv_user_year_month_trip
+ORDER BY
+    dim_year
+    , dim_month
+    , dim_user
+;
+```
+
+![pic](./pic/query02.png)
 
 - Station dimension
 
@@ -118,7 +137,7 @@ SELECT
 	, dim_user
 	, dim_station
 	, trip_count
-FROM toronto_shared_bike.dw_schema.mv_user_station
+FROM toronto_shared_bike.dw_schema.mv_user_year_station
 ORDER BY
     dim_year
     , dim_user
@@ -126,7 +145,7 @@ ORDER BY
 ;
 ```
 
-![pic](./pic/query02.png)
+![pic](./pic/query03.png)
 
 ---
 
@@ -137,3 +156,12 @@ docker exec -it postgresql bash /scripts/export/export.sh
 ```
 
 ![pic](./pic/export01.png)
+
+---
+
+## Execute Pipeline
+
+
+```sh
+docker exec -it postgresql bash /scripts/pipeline/pipeline.sh
+```

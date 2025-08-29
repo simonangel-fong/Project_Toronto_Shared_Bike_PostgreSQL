@@ -1,3 +1,10 @@
+-- ============================================================================
+-- Script Name : 05_create_etl.sql
+-- Purpose     : Create etl pipeline objects.
+-- Author      : Wenhao Fang
+-- Date        : 2025-07-15
+-- User        : Execute as a PostgreSQL superuser
+-- ============================================================================
 
 -- Create staging table
 -- DROP TABLE IF EXISTS dw_schema.staging_trip;

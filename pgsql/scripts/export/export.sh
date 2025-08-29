@@ -1,9 +1,19 @@
 #!/usr/bin/bash
 
+# ============================================================================
+# Script Name : export.sh
+# Purpose     : Export data into csv files.
+# Author      : Wenhao Fang
+# Date        : 2025-07-15
+# User        : Execute as a PostgreSQL superuser
+# ============================================================================
+
+set -e
+
 DB_USER="postgres"
 DB_NAME="toronto_shared_bike"
 SCHEMA_NAME="dw_schema"
-VIEW_LIST=("mv_user_time" "mv_user_station" "mv_station_count" "mv_bike_count")
+MV_LIST=("mv_user_year_hour_trip" "mv_user_year_month_trip" "mv_user_year_station" "mv_station_count" "mv_bike_count")
 EXPORT_PATH="/export"
 
 echo
@@ -12,7 +22,7 @@ echo "Exporting MV..."
 echo "##############################"
 echo
 
-for VIEW in "${VIEW_LIST[@]}";
+for VIEW in "${MV_LIST[@]}";
 do
     view_name="$SCHEMA_NAME.$VIEW"
     csv_file="$EXPORT_PATH/$VIEW.csv"

@@ -1,3 +1,11 @@
+-- ============================================================================
+-- Script Name : transform.sql
+-- Purpose     : Transform staging data.
+-- Author      : Wenhao Fang
+-- Date        : 2025-07-15
+-- User        : Execute as a PostgreSQL superuser
+-- ============================================================================
+
 -- Enable verbose error reporting
 \set ON_ERROR_STOP on
 
@@ -102,10 +110,3 @@ WHERE model IS NULL;
 UPDATE dw_schema.staging_trip
 SET user_type = REPLACE(user_type, CHR(13), '')
 WHERE POSITION(CHR(13) IN user_type) > 0;
-
--- ============================================================================
--- Final Confirmation
--- ============================================================================
--- SELECT *
--- FROM dw_schema.staging_trip
--- LIMIT 2;

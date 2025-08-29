@@ -1,40 +1,76 @@
+-- ============================================================================
+-- Script Name : 06_create_mv.sql
+-- Purpose     : Create mv objects.
+-- Author      : Wenhao Fang
+-- Date        : 2025-07-15
+-- User        : Execute as a PostgreSQL superuser
+-- ============================================================================
 
 -- ####################################
---  mv_user_time
+--  mv_user_year_hour_trip
 -- ####################################
 
--- DROP MATERIALIZED VIEW IF EXISTS dw_schema.mv_user_time;
-CREATE MATERIALIZED VIEW dw_schema.mv_user_time
+-- DROP MATERIALIZED VIEW IF EXISTS dw_schema.mv_user_year_hour_trip;
+CREATE MATERIALIZED VIEW dw_schema.mv_user_year_hour_trip
 TABLESPACE mv_tbsp
 AS
 SELECT	
-    t.dim_time_year     AS dim_year,
-	t.dim_time_month    AS dim_month,
-	t.dim_time_hour     AS dim_hour,
-	u.dim_user_type_name AS dim_user,
-    COUNT(*)            AS trip_count,
-	SUM(f.fact_trip_duration) AS duration_sum,
-	ROUND(AVG(f.fact_trip_duration)::NUMERIC, 2) AS duration_avg
+    t.dim_time_year     AS dim_year
+	, t.dim_time_hour    AS dim_hour
+	, u.dim_user_type_name AS dim_user
+	, COUNT(*)            AS trip_count
+	, SUM(f.fact_trip_duration) AS duration_sum
 FROM dw_schema.fact_trip f
 JOIN dw_schema.dim_time t 
     ON f.fact_trip_start_time_id = t.dim_time_id
 JOIN dw_schema.dim_user_type u
 	ON f.fact_trip_user_type_id = u.dim_user_type_id
 GROUP BY
-	t.dim_time_year,
-	t.dim_time_month,
-	t.dim_time_hour,
-	u.dim_user_type_name;
+	t.dim_time_year
+	, t.dim_time_hour
+	, u.dim_user_type_name
+;
 
--- Create index to simulate partition-like filtering
-CREATE INDEX idx_mv_time 
-ON dw_schema.mv_user_time (dim_year, dim_month, dim_hour);
+-- Create index
+-- DROP INDEX dw_schema.idx_mv_user_year_hour_trip;
+CREATE INDEX idx_mv_user_year_hour_trip
+ON dw_schema.mv_user_year_hour_trip (dim_user, dim_year, dim_hour);
 
 -- ####################################
---  mv_user_station
+--  mv_user_year_month_trip
 -- ####################################
--- DROP MATERIALIZED VIEW IF EXISTS dw_schema.mv_user_station;
-CREATE MATERIALIZED VIEW dw_schema.mv_user_station
+
+-- DROP MATERIALIZED VIEW IF EXISTS dw_schema.mv_user_year_month_trip;
+CREATE MATERIALIZED VIEW dw_schema.mv_user_year_month_trip
+TABLESPACE mv_tbsp
+AS
+SELECT	
+    t.dim_time_year     AS dim_year
+	, t.dim_time_month    AS dim_month
+	, u.dim_user_type_name AS dim_user
+	, COUNT(*)            AS trip_count
+	, SUM(f.fact_trip_duration) AS duration_sum
+FROM dw_schema.fact_trip f
+JOIN dw_schema.dim_time t 
+    ON f.fact_trip_start_time_id = t.dim_time_id
+JOIN dw_schema.dim_user_type u
+	ON f.fact_trip_user_type_id = u.dim_user_type_id
+GROUP BY
+	t.dim_time_year
+	, t.dim_time_month
+	, u.dim_user_type_name
+;
+
+-- Create index
+-- DROP INDEX dw_schema.idx_mv_user_year_month_trip;
+CREATE INDEX idx_mv_user_year_month_trip
+ON dw_schema.mv_user_year_month_trip (dim_user, dim_year, dim_month);
+
+-- ####################################
+--  mv_user_year_station
+-- ####################################
+-- DROP MATERIALIZED VIEW IF EXISTS dw_schema.mv_user_year_station;
+CREATE MATERIALIZED VIEW dw_schema.mv_user_year_station
 TABLESPACE mv_tbsp
 AS
 WITH ranked_station_year_all AS (
@@ -99,14 +135,13 @@ SELECT
   dim_year,
   dim_user
 FROM ranked_station_year_user
-WHERE trip_rank <= 10;
+WHERE trip_rank <= 10
+;
 
 -- Indexes for filter speed
-CREATE INDEX idx_mv_user_station_year 
-ON dw_schema.mv_user_station (dim_year);
-
-CREATE INDEX idx_mv_user_station_station 
-ON dw_schema.mv_user_station (dim_station);
+-- DROP INDEX dw_schema.idx_mv_user_year_station;
+CREATE INDEX idx_mv_user_year_station
+ON dw_schema.mv_user_year_station (dim_year, dim_user);
 
 -- ####################################
 --  mv_station_count
@@ -121,7 +156,8 @@ SELECT
 FROM dw_schema.fact_trip f
 JOIN dw_schema.dim_time t
   ON f.fact_trip_start_time_id = t.dim_time_id
-GROUP BY t.dim_time_year;
+GROUP BY t.dim_time_year
+;
 
 -- ####################################
 --  mv_bike_count
@@ -136,4 +172,5 @@ SELECT
 FROM dw_schema.fact_trip f
 JOIN dw_schema.dim_time t
   ON f.fact_trip_start_time_id = t.dim_time_id
-GROUP BY t.dim_time_year;
+GROUP BY t.dim_time_year
+;

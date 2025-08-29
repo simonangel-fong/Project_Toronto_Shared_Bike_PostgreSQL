@@ -1,8 +1,21 @@
+-- ============================================================================
+-- Script Name : 04_create_dw.sql
+-- Purpose     : Create data warehouse objects.
+-- Author      : Wenhao Fang
+-- Date        : 2025-07-15
+-- User        : Execute as a PostgreSQL superuser
+-- ============================================================================
+
+\echo '\n######## Creating schema... ########\n'
+
 -- Switch to the Toronto Shared Bike database
 \c toronto_shared_bike;
 
-SELECT current_database();
-SELECT current_user;
+-- Display current database and user
+SELECT 
+current_database() 	as database_name
+, current_user 		as username
+;
 
 -- Create the time dimension table
 CREATE TABLE dw_schema.dim_time (
@@ -24,7 +37,8 @@ CREATE TABLE dw_schema.dim_time (
   CONSTRAINT chk_weekday  CHECK (dim_time_weekday BETWEEN 1 AND 7),         -- Validate day of week
   CONSTRAINT chk_hour     CHECK (dim_time_hour BETWEEN 0 AND 23),           -- Validate hour (0-23)
   CONSTRAINT chk_minute   CHECK (dim_time_minute BETWEEN 0 AND 59)          -- Validate minute (0-59)
-) TABLESPACE dim_tbsp;
+) 
+TABLESPACE dim_tbsp;
 
 -- Create composite B-tree index on year and month for time-based aggregations
 CREATE INDEX index_dim_time_year_month
@@ -36,7 +50,8 @@ CREATE TABLE dw_schema.dim_station (
 	dim_station_id      INTEGER         NOT NULL,  -- Unique station identifier
   	dim_station_name    VARCHAR(100)    NOT NULL,  -- Station name
 	CONSTRAINT pk_dim_station PRIMARY KEY (dim_station_id)
-) TABLESPACE dim_tbsp;
+) 
+TABLESPACE dim_tbsp;
 
 -- Create index on station name for efficient lookups
 CREATE INDEX index_dim_station_station_name
@@ -48,14 +63,16 @@ CREATE TABLE dw_schema.dim_bike (
   dim_bike_id       INTEGER       NOT NULL,  -- Unique bike identifier
   dim_bike_model    VARCHAR(50)   NOT NULL,  -- Bike model
   CONSTRAINT pk_dim_bike PRIMARY KEY (dim_bike_id)
-) TABLESPACE dim_tbsp;
+) 
+TABLESPACE dim_tbsp;
 
 -- Create the user type dimension table
 CREATE TABLE dw_schema.dim_user_type (
   dim_user_type_id        SERIAL          PRIMARY KEY,  -- Auto-incremented unique identifier
   dim_user_type_name      VARCHAR(50)     NOT NULL,     -- User type name
   CONSTRAINT uk_dim_user_type_name UNIQUE (dim_user_type_name)
-) TABLESPACE dim_tbsp;
+) 
+TABLESPACE dim_tbsp;
 
 -- Create the trip fact table with range partitioning
 CREATE TABLE dw_schema.fact_trip (
@@ -87,7 +104,6 @@ TABLESPACE fact_tbsp;
 CREATE TABLE dw_schema.fact_trip_2019 
 PARTITION OF dw_schema.fact_trip 
 FOR VALUES FROM ('2019-01-01') TO ('2020-01-01')
-    -- TABLESPACE fact_tbsp
 PARTITION BY RANGE (fact_trip_start_time_id);
 
 -- Create monthly subpartitions for 2019
@@ -107,7 +123,6 @@ CREATE TABLE dw_schema.fact_trip_2019_dec PARTITION OF dw_schema.fact_trip_2019 
 CREATE TABLE dw_schema.fact_trip_2020 
 PARTITION OF dw_schema.fact_trip 
 FOR VALUES FROM ('2020-01-01') TO ('2021-01-01')
---     TABLESPACE fact_tbsp
 PARTITION BY RANGE (fact_trip_start_time_id);
 
 -- Create monthly subpartitions for 2020
@@ -127,7 +142,6 @@ CREATE TABLE dw_schema.fact_trip_2020_dec PARTITION OF dw_schema.fact_trip_2020 
 CREATE TABLE dw_schema.fact_trip_2021 
 PARTITION OF dw_schema.fact_trip 
 FOR VALUES FROM ('2021-01-01') TO ('2022-01-01')
--- TABLESPACE fact_tbsp
 PARTITION BY RANGE (fact_trip_start_time_id);
 
 -- Create monthly subpartitions for 2021
@@ -147,7 +161,6 @@ CREATE TABLE dw_schema.fact_trip_2021_dec PARTITION OF dw_schema.fact_trip_2021 
 CREATE TABLE dw_schema.fact_trip_2022 
 PARTITION OF dw_schema.fact_trip 
 FOR VALUES FROM ('2022-01-01') TO ('2023-01-01')
---     TABLESPACE fact_tbsp
 PARTITION BY RANGE (fact_trip_start_time_id);
 
 -- Create monthly subpartitions for 2022
@@ -167,7 +180,6 @@ CREATE TABLE dw_schema.fact_trip_2022_dec PARTITION OF dw_schema.fact_trip_2022 
 CREATE TABLE dw_schema.fact_trip_2023 
 PARTITION OF dw_schema.fact_trip 
 FOR VALUES FROM ('2023-01-01') TO ('2024-01-01')
--- TABLESPACE fact_tbsp
 PARTITION BY RANGE (fact_trip_start_time_id);
 
 -- Create monthly subpartitions for 2023
@@ -187,7 +199,6 @@ CREATE TABLE dw_schema.fact_trip_2023_dec PARTITION OF dw_schema.fact_trip_2023 
 CREATE TABLE dw_schema.fact_trip_2024 
 PARTITION OF dw_schema.fact_trip 
 FOR VALUES FROM ('2024-01-01') TO ('2025-01-01')
---     TABLESPACE fact_tbsp
 PARTITION BY RANGE (fact_trip_start_time_id);
 
 -- Create monthly subpartitions for 2024
@@ -210,8 +221,6 @@ FOR VALUES FROM ('2025-01-01') TO (MAXVALUE)
 TABLESPACE fact_tbsp;
 
 -- Create indexes on the fact table
--- Note: PostgreSQL automatically creates indexes on partition keys, but we can add additional ones
-
 -- Create index on start time for efficient time-based queries
 CREATE INDEX index_fact_trip_start_time
 ON dw_schema.fact_trip (fact_trip_start_time_id)
@@ -245,5 +254,3 @@ FROM pg_indexes
 WHERE schemaname = 'dw_schema'
 ORDER BY indexname;
 
-
--- SELECT load_trip_data_for_year('2022');

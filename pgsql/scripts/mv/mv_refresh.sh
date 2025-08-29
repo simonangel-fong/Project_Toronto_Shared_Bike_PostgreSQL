@@ -1,9 +1,19 @@
 #!/usr/bin/bash
 
+# ============================================================================
+# Script Name : mv_refresh.sh
+# Purpose     : Refresh materialized views.
+# Author      : Wenhao Fang
+# Date        : 2025-07-15
+# User        : Execute as a PostgreSQL superuser
+# ============================================================================
+
+set -e
+
 DB_USER="postgres"
 DB_NAME="toronto_shared_bike"
 SCHEMA_NAME="dw_schema"
-MV_LIST=("mv_user_time" "mv_user_station" "mv_station_count" "mv_bike_count")
+MV_LIST=("mv_user_year_hour_trip" "mv_user_year_month_trip" "mv_user_year_station" "mv_station_count" "mv_bike_count")
 
 echo
 echo "##############################"

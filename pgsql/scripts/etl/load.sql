@@ -1,15 +1,16 @@
 -- ============================================================================
--- Script Name : 03_load_pg.sql
--- Purpose     : Transform and Load staging data into the Data Warehouse in PostgreSQL
--- Author      : Wenhao Fang (converted for PostgreSQL)
--- Date        : 2025-05-07
--- Notes       : Run with a user that has INSERT/UPDATE privileges on dw_schema
+-- Script Name : load.sql
+-- Purpose     : Load staging data into the Data Warehouse in PostgreSQL
+-- Author      : Wenhao Fang
+-- Date        : 2025-07-15
+-- User        : Execute as a PostgreSQL superuser
 -- ============================================================================
 
 -- ============================================================================
 -- Load dim_time
 -- ============================================================================
 \echo '\n######## Loading dim_time... ########\n'
+
 MERGE INTO dw_schema.dim_time AS tgt
 USING (
     SELECT DISTINCT
@@ -49,6 +50,7 @@ VALUES (
 -- Load dim_station
 -- ============================================================================
 \echo '\n######## Loading dim_station... ########\n'
+
 WITH station_times AS (
     SELECT 
         start_station_id::INT AS station_id,
@@ -86,6 +88,7 @@ WHEN NOT MATCHED THEN
 -- Load dim_bike
 -- ============================================================================
 \echo '\n######## Loading dim_bike... ########\n'
+
 MERGE INTO dw_schema.dim_bike AS tgt
 USING (
     SELECT 
@@ -108,6 +111,7 @@ WHEN NOT MATCHED THEN
 -- Load dim_user_type
 -- ============================================================================
 \echo '\n######## Loading dim_user_type... ########\n'
+
 MERGE INTO dw_schema.dim_user_type AS tgt
 USING (
     SELECT DISTINCT user_type AS dim_user_type_name
@@ -123,6 +127,7 @@ WHEN NOT MATCHED THEN
 -- Load fact_trip
 -- ============================================================================
 \echo '\n######## Loading fact_trip... ########\n'
+
 MERGE INTO dw_schema.fact_trip AS tgt
 USING (
     SELECT 

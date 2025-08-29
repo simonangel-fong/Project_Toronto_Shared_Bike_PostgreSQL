@@ -1,11 +1,9 @@
 -- ============================================================================
--- Script Name : create_schema.sql
--- Purpose     : Create a dedicated schema (dw_schema) in the Toronto Shared Bike database
---               and assign necessary privileges (PostgreSQL version)
--- Author      : Wenhao Fang (Converted from Oracle)
--- Date        : 2025-07-09
--- User        : Execute as a PostgreSQL superuser or user with CREATE ROLE privileges
--- Notes       : Ensure the database and required tablespaces exist before running this script
+-- Script Name : 03_create_schema.sql
+-- Purpose     : Create schema to contain objects.
+-- Author      : Wenhao Fang
+-- Date        : 2025-07-15
+-- User        : Execute as a PostgreSQL superuser
 -- ============================================================================
 
 \echo '\n######## Creating schema... ########\n'
