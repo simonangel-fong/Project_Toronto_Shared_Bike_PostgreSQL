@@ -111,7 +111,6 @@ ORDER BY
 
 - Time dimension - month
 
-
 ```sh
 SELECT
 	dim_year
@@ -160,7 +159,6 @@ docker exec -it postgresql bash /scripts/export/export.sh
 ---
 
 ## Execute Pipeline
-
 
 ```sh
 docker exec -it postgresql bash /scripts/pipeline/pipeline.sh
