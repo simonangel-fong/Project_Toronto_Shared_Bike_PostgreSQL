@@ -15,12 +15,12 @@ CREATE MATERIALIZED VIEW dw_schema.mv_user_year_hour_trip
 TABLESPACE mv_tbsp
 AS
 SELECT	
-	gen_random_uuid() 				AS id		
-    , t.dim_time_year     			AS dim_year
-	, t.dim_time_hour    			AS dim_hour
-	, u.dim_user_type_name 			AS dim_user
-	, COUNT(*)            			AS trip_count
-	, SUM(f.fact_trip_duration) 	AS duration_sum
+	gen_random_uuid()				AS pk
+  	, t.dim_time_year				AS dim_year
+	, t.dim_time_hour				AS dim_hour
+	, u.dim_user_type_name			AS dim_user
+	, COUNT(*)						AS trip_count
+	, SUM(f.fact_trip_duration)		AS duration_sum
 FROM dw_schema.fact_trip f
 JOIN dw_schema.dim_time t 
     ON f.fact_trip_start_time_id = t.dim_time_id
@@ -46,7 +46,7 @@ CREATE MATERIALIZED VIEW dw_schema.mv_user_year_month_trip
 TABLESPACE mv_tbsp
 AS
 SELECT	
-	gen_random_uuid() 				AS id	
+	gen_random_uuid() 				AS pk	
     , t.dim_time_year     			AS dim_year
 	, t.dim_time_month    			AS dim_month
 	, u.dim_user_type_name 			AS dim_user
@@ -122,7 +122,7 @@ ranked_station_year_user AS (
   ) station_user_year
 )
 SELECT
-	gen_random_uuid()	AS id
+	gen_random_uuid()	AS pk
  	, trip_count
  	, dim_station
  	, dim_year
@@ -133,7 +133,7 @@ WHERE trip_rank <= 10
 UNION ALL
 
 SELECT
-	gen_random_uuid()	AS id
+	gen_random_uuid()	AS pk
 	, trip_count
  	, dim_station
 	, dim_year
@@ -155,7 +155,7 @@ CREATE MATERIALIZED VIEW dw_schema.mv_station_count
 TABLESPACE mv_tbsp
 AS
 SELECT
-	gen_random_uuid()								AS id
+	gen_random_uuid()								AS pk
 	, COUNT(DISTINCT f.fact_trip_start_station_id) 	AS station_count
 	, t.dim_time_year 								AS dim_year
 FROM dw_schema.fact_trip f
@@ -172,7 +172,7 @@ CREATE MATERIALIZED VIEW dw_schema.mv_bike_count
 TABLESPACE mv_tbsp
 AS
 SELECT
-	gen_random_uuid()					AS id
+	gen_random_uuid()					AS pk
 	, COUNT(DISTINCT f.fact_trip_bike_id) AS bike_count
 	, t.dim_time_year 					AS dim_year
 FROM dw_schema.fact_trip f
