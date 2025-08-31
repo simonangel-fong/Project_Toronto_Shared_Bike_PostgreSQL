@@ -13,7 +13,7 @@ set -e
 DB_USER="postgres"
 DB_NAME="toronto_shared_bike"
 SCHEMA_NAME="dw_schema"
-MV_LIST=("mv_user_year_hour_trip" "mv_user_year_month_trip" "mv_user_year_station" "mv_station_count" "mv_bike_count")
+MV_LIST=("mv_trip_user_year_hour" "mv_trip_user_year_month" "mv_top_station_user_year" "mv_station_year" "mv_bike_year")
 
 echo
 echo "##############################"

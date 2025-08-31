@@ -1,0 +1,81 @@
+pk,trip_count,dim_station,dim_year,dim_user
+f28cba0b-7b49-4147-80d6-c4aaab83c451,17778,Sherbourne St / Wellesley St E,2019,annual
+ffb45b9e-f480-4425-bb5c-80cb58012294,16517,Bay St / College St (East Side),2019,annual
+0e36f72b-2848-48c1-802b-30b370ee4f3b,15863,Union Station,2019,annual
+c9a52585-2cf4-47fd-b55e-5c0e7596c616,15753,York St / Queens Quay W,2019,annual
+d50f7751-c877-4bc5-af1a-1ab7eb50c2ad,15159,Dundas St E / Regent Park Blvd,2019,annual
+397aa552-1611-47f3-8098-eb4cc2fa5458,14253,Princess St / Adelaide St E,2019,annual
+a4abea8c-70f1-4ebc-92a7-9971b0ff3d86,13994,Front St W / Blue Jays Way,2019,annual
+6b3e2efd-db36-4bc4-8041-3002eb345c9a,13959,Queen St W / Portland St,2019,annual
+78a4364a-a71e-451f-92a2-1f733b84d0e0,13802,Bay St / Wellesley St W,2019,annual
+662ceadb-a255-43a4-abc2-b165d2600703,13499,Widmer St / Adelaide St W,2019,annual
+f7033533-14b7-4f10-b2fa-0c8c0e17d807,13538,York St / Queens Quay W,2019,casual
+dcb1c07f-9ac4-4fa3-90db-5be8d5c76ae2,12660,Ontario Place Blvd / Lake Shore Blvd W (East),2019,casual
+4d9ac54b-788c-4bb4-9c84-4012401a956e,11911,Lake Shore Blvd W / Ontario Dr,2019,casual
+9a266cd4-5c93-4368-ad5c-cc9fd7ad4a9d,11875,Bay St / Queens Quay W (Ferry Terminal),2019,casual
+367f14b7-4f14-4ce7-a061-78cb4b29c601,11430,HTO Park (Queens Quay W),2019,casual
+3cabc673-dd61-4064-ba62-bc23e3764920,10544,Bathurst St/Queens Quay(Billy Bishop Airport),2019,casual
+882e0ef6-c643-4c55-84ac-e299c80963d5,8127,Sunnyside - Gus Ryder Pool,2019,casual
+6a135c99-51ed-4d0e-8440-91bc288bfab6,7703,Bremner Blvd / Rees St,2019,casual
+fbac37f6-1c3b-43e0-8508-4b4d611ef5e8,7672,Queens Quay W / Lower Simcoe St,2019,casual
+b6dd4290-949d-4d43-8957-854cb3e31e15,7527,Queens Quay / Yonge St,2019,casual
+9df29c3c-4f61-4a2c-a86c-5523d2ad4ad3,16947,Queens Quay E / Lower Sherbourne St,2020,annual
+9de661aa-2ec1-411d-abda-9d5b5665ae5e,14159,Dundas St E / Regent Park Blvd,2020,annual
+3acd5e4f-c252-4789-b00b-a1c765a80fe3,12535,York St / Queens Quay W,2020,annual
+b60f20f7-a638-4114-a6d4-ebd4360dacaa,12402,Queen St W / Portland St,2020,annual
+0fc347ae-0f0c-4739-8bad-9e6e69b9220a,11602,Bay St / College St (East Side),2020,annual
+7f17af6d-60b2-444b-a0ce-632e857f62ac,11564,Sherbourne St / Wellesley St E,2020,annual
+86e0484f-c8e7-4a16-ab59-8f96ad10a0f9,11061,Widmer St / Adelaide St W,2020,annual
+e5a3a588-fb64-4786-ab32-386ae62dbd8a,10697,Lake Shore Blvd W / Ontario Dr,2020,annual
+4ae2a7d8-8d3b-4fc9-8f73-647b7679fb1f,10287,Jarvis St / Dundas St E,2020,annual
+f3186716-0d53-43f4-aa95-c6cf84fc0b8b,10115,Fort York  Blvd / Capreol Ct,2020,annual
+9712c0de-3a57-40b0-97dd-934639052351,19762,Lake Shore Blvd W / Ontario Dr,2020,casual
+ed476d49-0116-4af9-a132-eba135a2105f,16929,Marilyn Bell Park Tennis Court,2020,casual
+f2db2423-854c-4f01-b160-e3608489ce1d,16016,HTO Park (Queens Quay W),2020,casual
+1058c0ac-3b31-4a5d-9e5a-5ef336c946d5,15901,Ontario Place Blvd / Lake Shore Blvd W (East),2020,casual
+d7d728d8-7d91-42bf-9c80-891e911b05e7,15381,Humber Bay Shores Park West,2020,casual
+f4f5e51c-ba99-429a-a71e-4e85d7020fec,14002,Queens Quay E / Lower Sherbourne St,2020,casual
+9bbbdd26-8da2-4207-bf33-d1a0f014a774,13364,Humber Bay Shores Park East,2020,casual
+574ba72a-53d9-4122-957f-939e576f0d43,13192,York St / Queens Quay W,2020,casual
+6aeab380-5af3-4b95-bf4c-a6411f44fab3,12972,Bay St / Queens Quay W (Ferry Terminal),2020,casual
+48e1dc87-3512-4586-b56c-2304d5d4b937,12441,Cherry Beach,2020,casual
+9c119b88-776a-4779-ab6f-948683e6b5ac,15912,York St / Queens Quay W,2021,annual
+12c77463-ebf4-43a0-9607-0744904a720d,15110,Dundas St E / Regent Park Blvd,2021,annual
+0c2f26d7-74ee-495e-9ac2-f8a1587a2d50,14022,Queens Quay E / Lower Sherbourne St,2021,annual
+a50cb89b-35f7-44b2-95e8-3312afd4ef1a,13952,Jarvis St / Dundas St E,2021,annual
+6689104a-9fc1-4e1e-8d0c-a34982df948c,13505,Bay St / Wellesley St W,2021,annual
+4d492715-b61d-4853-a23c-afdd2f485969,13053,Queen St W / Portland St,2021,annual
+d8ce8995-3aa5-40fd-aaab-dc70fcc36660,12884,Bay St / College St (East Side),2021,annual
+490ee5d3-ad8c-41eb-8d58-a840b478303d,12543,Fort York  Blvd / Capreol Ct,2021,annual
+d7f77a2c-78be-468d-ac87-b45cae395459,11933,College St / Major St,2021,annual
+bd6e4442-fb42-4196-a708-f169de13fe26,11739,Sherbourne St / Wellesley St E,2021,annual
+d57d2165-e0ee-4e2d-bec5-5121086792a3,19887,York St / Queens Quay W,2021,casual
+bf2ea18c-bef5-40f7-807e-44e315a80e7b,17206,Ontario Place Blvd / Lake Shore Blvd W (East),2021,casual
+2b4688f4-b8d0-4cc9-8304-cdae2ef1f6a8,17137,Lake Shore Blvd W / Ontario Dr,2021,casual
+43624711-866e-4da0-a792-7d016541bb68,16403,HTO Park (Queens Quay W),2021,casual
+f1888471-6d8a-41c6-baab-ed590c98735b,15983,Bay St / Queens Quay W (Ferry Terminal),2021,casual
+b70c5f09-80e6-4938-a55d-5244482364b1,14964,Bathurst St/Queens Quay(Billy Bishop Airport),2021,casual
+ecc3f9ba-40a1-45b7-89cb-456ae6b61da3,13877,Marilyn Bell Park Tennis Court,2021,casual
+f35d7880-eb84-431f-aff7-4ef228a90dcd,13143,Tommy Thompson Park (Leslie Street Spit),2021,casual
+8d77ac82-b400-4211-8c71-1ce222f78c0c,12771,Humber Bay Shores Park / Marine Parade Dr,2021,casual
+80b6955c-db23-4f11-8a75-462a7ad562fa,12592,Queens Quay E / Lower Sherbourne St,2021,casual
+737e597a-71d4-41f4-a304-57083904a6b4,14276,Bay St / College St (East Side),2022,annual
+9b19acf6-6c7f-4f7d-9cb7-7ed16c6fcfce,12252,Bay St / Wellesley St W,2022,annual
+df3e3839-842f-4e1e-80d9-984abcd7509c,11606,Dundas St E / Regent Park Blvd,2022,annual
+fb497a53-8336-4854-91d8-f8b724535318,10555,College Park - Yonge St Entrance,2022,annual
+e08792f2-901f-4ff0-86ab-6a6e2fc3f4d5,10553,King St W / Brant St,2022,annual
+650ad550-3619-43f6-8a3d-50810a9938a6,10193,College St / Major St,2022,annual
+28a19a10-8789-4bc5-8ede-e9c44a172acd,10192,York St / Queens Quay W,2022,annual
+f3973568-f25c-41c9-a305-5e75fb2b3d04,10072,College St / Huron St,2022,annual
+3a37b6c0-8dac-409c-8dc4-00f7349091ee,9959,Jarvis St / Dundas St E,2022,annual
+7805bccc-b87a-426d-a559-a30ceca5addf,9838,Church St  / Wood St,2022,annual
+923c5743-b8be-47dc-97bf-e68c493ed807,30188,York St / Queens Quay W,2022,casual
+2ca90d74-aaea-4507-932f-aefc37deb3c2,22963,Bay St / Queens Quay W (Ferry Terminal),2022,casual
+ed25f8de-3c97-480d-9d92-657d91a72151,21431,Lake Shore Blvd W / Ontario Dr,2022,casual
+b8ff6d82-586b-406c-87ff-0a1e2a1c6b0e,21260,HTO Park (Queens Quay W),2022,casual
+09466b40-cb67-439c-92a8-53a881a35949,18767,Ontario Place Blvd / Lake Shore Blvd W (East),2022,casual
+bbc34f70-bff5-48ce-b9cf-26212e23a34b,18144,Bay St / College St (East Side),2022,casual
+ceea18dd-ab6a-4655-893e-e676ec5d711d,17986,Queens Quay / Yonge St,2022,casual
+9abd5493-2149-4d3a-b02c-1dea27dc9b2f,17766,Marilyn Bell Park Tennis Court,2022,casual
+e4d30bb5-a7d7-4c65-b966-2f80e353f458,16596,Bathurst St/Queens Quay(Billy Bishop Airport),2022,casual
+1c7c6a27-3fdc-4cdb-8d1a-afc3861df3b6,16541,Dundas St W / Yonge St,2022,casual

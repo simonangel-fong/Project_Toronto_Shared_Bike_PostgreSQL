@@ -84,6 +84,14 @@ UPDATE dw_schema.staging_trip
 SET end_station_name = 'UNKNOWN'
 WHERE end_station_name IS NULL OR TRIM(end_station_name) = 'NULL';
 
+\echo '\n######## Update membership type... ########\n'
+UPDATE dw_schema.staging_trip
+SET user_type = 'annual'
+WHERE user_type = 'Annual Member';
+
+UPDATE dw_schema.staging_trip
+SET user_type = 'casual'
+WHERE user_type = 'Casual Member';
 
 \echo '\n######## Substitute missing user_type with "UNKNOWN"... ########\n'
 -- Substitute missing user_type with 'UNKNOWN'

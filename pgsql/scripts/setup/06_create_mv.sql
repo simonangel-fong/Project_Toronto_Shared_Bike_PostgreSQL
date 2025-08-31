@@ -7,11 +7,10 @@
 -- ============================================================================
 
 -- ####################################
---  mv_user_year_hour_trip
+--  mv_trip_user_year_hour
 -- ####################################
-
--- DROP MATERIALIZED VIEW IF EXISTS dw_schema.mv_user_year_hour_trip;
-CREATE MATERIALIZED VIEW dw_schema.mv_user_year_hour_trip
+-- DROP MATERIALIZED VIEW IF EXISTS dw_schema.mv_trip_user_year_hour;
+CREATE MATERIALIZED VIEW dw_schema.mv_trip_user_year_hour
 TABLESPACE mv_tbsp
 AS
 SELECT	
@@ -33,16 +32,16 @@ GROUP BY
 ;
 
 -- Create index
--- DROP INDEX dw_schema.idx_mv_user_year_hour_trip;
-CREATE INDEX idx_mv_user_year_hour_trip
-ON dw_schema.mv_user_year_hour_trip (dim_user, dim_year, dim_hour);
+-- DROP INDEX dw_schema.idx_mv_trip_user_year_hour;
+CREATE INDEX idx_mv_trip_user_year_hour
+ON dw_schema.mv_trip_user_year_hour (dim_user, dim_year, dim_hour);
 
 -- ####################################
---  mv_user_year_month_trip
+--  mv_trip_user_year_month
 -- ####################################
 
--- DROP MATERIALIZED VIEW IF EXISTS dw_schema.mv_user_year_month_trip;
-CREATE MATERIALIZED VIEW dw_schema.mv_user_year_month_trip
+-- DROP MATERIALIZED VIEW IF EXISTS dw_schema.mv_trip_user_year_month;
+CREATE MATERIALIZED VIEW dw_schema.mv_trip_user_year_month
 TABLESPACE mv_tbsp
 AS
 SELECT	
@@ -64,15 +63,15 @@ GROUP BY
 ;
 
 -- Create index
--- DROP INDEX dw_schema.idx_mv_user_year_month_trip;
-CREATE INDEX idx_mv_user_year_month_trip
-ON dw_schema.mv_user_year_month_trip (dim_user, dim_year, dim_month);
+-- DROP INDEX dw_schema.idx_mv_trip_user_year_month;
+CREATE INDEX idx_mv_trip_user_year_month
+ON dw_schema.mv_trip_user_year_month (dim_user, dim_year, dim_month);
 
 -- ####################################
---  mv_user_year_station
+--  mv_top_station_user_year
 -- ####################################
--- DROP MATERIALIZED VIEW IF EXISTS dw_schema.mv_user_year_station;
-CREATE MATERIALIZED VIEW dw_schema.mv_user_year_station
+-- DROP MATERIALIZED VIEW IF EXISTS dw_schema.mv_top_station_user_year;
+CREATE MATERIALIZED VIEW dw_schema.mv_top_station_user_year
 TABLESPACE mv_tbsp
 AS
 WITH ranked_station_year_all AS (
@@ -123,35 +122,36 @@ ranked_station_year_user AS (
 )
 SELECT
 	gen_random_uuid()	AS pk
- 	, trip_count
- 	, dim_station
- 	, dim_year
-	, 'all'				AS dim_user
-FROM ranked_station_year_all
-WHERE trip_rank <= 10
-
-UNION ALL
-
-SELECT
-	gen_random_uuid()	AS pk
 	, trip_count
  	, dim_station
 	, dim_year
 	, dim_user
 FROM ranked_station_year_user
-WHERE trip_rank <= 10
+WHERE trip_rank <= 10;
+-- SELECT
+-- 	gen_random_uuid()	AS pk
+--  	, trip_count
+--  	, dim_station
+--  	, dim_year
+-- 	, 'all'				AS dim_user
+-- FROM ranked_station_year_all
+-- WHERE trip_rank <= 10
+
+-- UNION ALL
+
+
 ;
 
 -- Indexes for filter speed
--- DROP INDEX dw_schema.idx_mv_user_year_station;
-CREATE INDEX idx_mv_user_year_station
-ON dw_schema.mv_user_year_station (dim_year, dim_user);
+-- DROP INDEX dw_schema.idx_mv_top_station_user_year;
+CREATE INDEX idx_mv_top_station_user_year
+ON dw_schema.mv_top_station_user_year (dim_year, dim_user);
 
 -- ####################################
---  mv_station_count
+--  mv_station_year
 -- ####################################
--- DROP MATERIALIZED VIEW IF EXISTS dw_schema.mv_station_count;
-CREATE MATERIALIZED VIEW dw_schema.mv_station_count
+-- DROP MATERIALIZED VIEW IF EXISTS dw_schema.mv_station_year;
+CREATE MATERIALIZED VIEW dw_schema.mv_station_year
 TABLESPACE mv_tbsp
 AS
 SELECT
@@ -165,10 +165,10 @@ GROUP BY t.dim_time_year
 ;
 
 -- ####################################
---  mv_bike_count
+--  mv_bike_year
 -- ####################################
--- DROP MATERIALIZED VIEW IF EXISTS dw_schema.mv_bike_count;
-CREATE MATERIALIZED VIEW dw_schema.mv_bike_count
+-- DROP MATERIALIZED VIEW IF EXISTS dw_schema.mv_bike_year;
+CREATE MATERIALIZED VIEW dw_schema.mv_bike_year
 TABLESPACE mv_tbsp
 AS
 SELECT
